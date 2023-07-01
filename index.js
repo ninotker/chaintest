@@ -1,16 +1,12 @@
 const ProxyChain = require('proxy-chain');
 
 const server = new ProxyChain.Server({
-    port: 8000,
+    port: 4323,
     verbose: true,
     prepareRequestFunction: ({ request, username, password, hostname, port, isHttp, connectionId }) => {
-        const proxyAuthValue = Buffer.from('Supq:ISJB').toString('base64');
         return {
             requestAuthentication: false,
-            headers: {
-                'Proxy-Authorization': `Basic ${proxyAuthValue}`
-            },
-            upstreamProxyUrl: 'http://localhost:4026',
+            upstreamProxyUrl: `http://Supq:ISJB@localhost:4026`,
         };
     },
 });
